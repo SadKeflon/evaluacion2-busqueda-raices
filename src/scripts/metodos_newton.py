@@ -61,3 +61,75 @@ def newton_raphson(f, df, p0, tol=1e-6, max_iter=100):
         "convergio": False,
         "historial": historial
     }
+    
+def newton_mejorado(f, df, d2f, p0, tol=1e-6, max_iter=100):
+    historial = []
+    p0 = float(p0)
+    error = float("inf")
+
+    for n in range(1, max_iter + 1):
+        fp0 = float(f(p0))
+
+        if abs(fp0) < tol:
+            if len(historial) == 0:
+                error = 0.0
+
+            return {
+                "raiz": p0,
+                "iteraciones": len(historial),
+                "error": error,
+                "convergio": True,
+                "historial": historial
+            }
+
+        dfp0 = float(df(p0))
+        d2fp0 = float(d2f(p0))
+
+        if not np.isfinite(fp0):
+            break
+
+        if not np.isfinite(dfp0) or not np.isfinite(d2fp0):
+            break
+
+        denominador = dfp0**2 - fp0 * d2fp0
+
+        if abs(denominador) < 1e-12:
+            break
+
+        p = p0 - (fp0 * dfp0) / denominador
+
+        if not np.isfinite(p):
+            break
+
+        fp = float(f(p))
+        error = abs(p - p0)
+
+        if not np.isfinite(fp):
+            break
+
+        historial.append({
+            "iteracion": n,
+            "x": p,
+            "fx": fp,
+            "error": error
+        })
+
+        if abs(fp) < tol:
+            return {
+                "raiz": p,
+                "iteraciones": n,
+                "error": error,
+                "convergio": True,
+                "historial": historial
+            }
+
+        p0 = p
+
+    return {
+        "raiz": p0,
+        "iteraciones": len(historial),
+        "error": error,
+        "convergio": False,
+        "historial": historial
+    }
+
