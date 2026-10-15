@@ -63,7 +63,7 @@ Su raíz es $x=2$ y, además, $f'(2)=0$ y $f''(2)=2>0$. La curva toca el eje hor
 
 ![Gráfico de la función con raíz doble](src/assets/raiz_doble.png)
 
-*Figura 1. La función $f(x)=(x-2)^2$ presenta una tangencia con el eje horizontal en $x=2$, sin cambio de signo alrededor de la raíz.*
+**Figura 1.** La función $f(x)=(x-2)^2$ presenta una tangencia con el eje horizontal en $x=2$, sin cambio de signo alrededor de la raíz.
 
 ## 4. Resultados generales
 
