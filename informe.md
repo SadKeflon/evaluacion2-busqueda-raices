@@ -2,7 +2,7 @@
 
 ## 1. Objetivo y ambiente de pruebas
 
-El objetivo de este laboratorio fue implementar y comparar seis métodos numéricos para encontrar raíces de ecuaciones de la forma \(f(x)=0\):
+El objetivo de este laboratorio fue implementar y comparar seis métodos numéricos para encontrar raíces de ecuaciones de la forma $f(x)=0$:
 
 - Bisección.
 - Falsa posición.
@@ -20,7 +20,7 @@ Las condiciones generales fueron las siguientes:
 - **Intervalos:** los indicados para cada función.
 - **Aproximaciones iniciales:** las definidas para los métodos abiertos.
 
-Cada ejecución registra la raíz aproximada, el número de iteraciones, un error estimado, el estado de convergencia y el historial de aproximaciones. En los programas, el criterio de parada utilizado principalmente es que el residuo \(|f(x)|\) sea menor que la tolerancia. Para punto fijo se exige, además, que el cambio entre aproximaciones sea menor que la tolerancia.
+Cada ejecución registra la raíz aproximada, el número de iteraciones, un error estimado, el estado de convergencia y el historial de aproximaciones. En los programas, el criterio de parada utilizado principalmente es que el residuo $|f(x)|$ sea menor que la tolerancia. Para punto fijo se exige, además, que el cambio entre aproximaciones sea menor que la tolerancia.
 
 Es importante distinguir el **residuo**, el **cambio entre aproximaciones** y el **error verdadero respecto de una raíz conocida**, ya que no son necesariamente iguales. En los gráficos de convergencia se representa el error registrado en el historial, generalmente asociado al cambio entre aproximaciones. En la primera iteración de algunos métodos cerrados se usa una estimación basada en el intervalo.
 
@@ -30,14 +30,14 @@ Las funciones utilizadas durante el laboratorio fueron las siguientes:
 
 | Función | Expresión | Intervalo | Valores iniciales |
 |---|---|---|---|
-| Polinómica | \(x^3-x-2\) | `[1, 2]` | `p0 = 1.5`, `p1 = 2.0` |
-| Raíz doble | \((x-2)^2\) | `[1, 3]` | `p0 = 1.2`, `p1 = 2.5` |
-| Logarítmica | \(\ln(x)+x-4\) | `[2, 3]` | `p0 = 2.5`, `p1 = 3.0` |
-| Exponencial | \(e^{-x}-x\) | `[0, 1]` | `p0 = 0.5`, `p1 = 1.0` |
-| Trigonométrica | \(\cos(x)-x\) | `[0, 1]` | `p0 = 0.5`, `p1 = 1.0` |
-| Mixta | \(\sqrt{x}-\cos(x)\) | `[0.1, 1]` | `p0 = 0.5`, `p1 = 1.0` |
+| Polinómica | $x^3-x-2$ | `[1, 2]` | `p0 = 1.5`, `p1 = 2.0` |
+| Raíz doble | $(x-2)^2$ | `[1, 3]` | `p0 = 1.2`, `p1 = 2.5` |
+| Logarítmica | $\ln(x)+x-4$ | `[2, 3]` | `p0 = 2.5`, `p1 = 3.0` |
+| Exponencial | $e^{-x}-x$ | `[0, 1]` | `p0 = 0.5`, `p1 = 1.0` |
+| Trigonométrica | $\cos(x)-x$ | `[0, 1]` | `p0 = 0.5`, `p1 = 1.0` |
+| Mixta | $\sqrt{x}-\cos(x)$ | `[0.1, 1]` | `p0 = 0.5`, `p1 = 1.0` |
 
-Las funciones, sus derivadas y las transformaciones \(g(x)\) para punto fijo están definidas en `src/scripts/funciones_prueba.py`.
+Las funciones, sus derivadas y las transformaciones $g(x)$ para punto fijo están definidas en `src/scripts/funciones_prueba.py`.
 
 ## 3. Comprobación de las raíces en los intervalos
 
@@ -51,19 +51,19 @@ Para aplicar bisección y falsa posición mediante el criterio habitual de cambi
 | Trigonométrica | 1.000000 | -0.459698 | Sí |
 | Mixta | -0.678776 | 0.459698 | Sí |
 
-En estos cinco casos se cumple \(f(a)f(b)<0\). Como las funciones son continuas en sus intervalos, el teorema del valor intermedio garantiza que existe al menos una raíz en cada uno.
+En estos cinco casos se cumple $f(a)f(b)<0$. Como las funciones son continuas en sus intervalos, el teorema del valor intermedio garantiza que existe al menos una raíz en cada uno.
 
 La función con raíz doble es diferente:
 
-\[
+$$
 f(x)=(x-2)^2, \qquad f(1)=1, \qquad f(2)=0, \qquad f(3)=1.
-\]
+$$
 
-Su raíz es \(x=2\) y, además, \(f'(2)=0\) y \(f''(2)=2>0\). La curva toca el eje horizontal, pero no lo cruza. Por eso no existe cambio de signo entre `1` y `3`, y bisección y falsa posición no pueden aplicarse con la comprobación de signos utilizada en nuestros programas.
+Su raíz es $x=2$ y, además, $f'(2)=0$ y $f''(2)=2>0$. La curva toca el eje horizontal, pero no lo cruza. Por eso no existe cambio de signo entre `1` y `3`, y bisección y falsa posición no pueden aplicarse con la comprobación de signos utilizada en nuestros programas.
 
 ![Gráfico de la función con raíz doble](src/assets/raiz_doble.png)
 
-*Figura 1. La función \(f(x)=(x-2)^2\) presenta una tangencia con el eje horizontal en \(x=2\), sin cambio de signo alrededor de la raíz.*
+*Figura 1. La función $f(x)=(x-2)^2$ presenta una tangencia con el eje horizontal en $x=2$, sin cambio de signo alrededor de la raíz.*
 
 ## 4. Resultados generales
 
@@ -122,12 +122,12 @@ El **orden de convergencia** describe la rapidez con la que disminuye el error c
 
 - **Bisección:** tiene convergencia lineal. En cada iteración el ancho del intervalo se reduce a la mitad. En una representación logarítmica del tamaño del intervalo se espera una disminución aproximadamente regular.
 - **Falsa posición:** suele tener convergencia lineal para raíces simples bajo condiciones habituales. Según la forma de la función, uno de los extremos puede cambiar muy poco y disminuir su velocidad.
-- **Punto fijo:** su comportamiento depende de la transformación \(g(x)\). Cuando \(0<|g'(\alpha)|<1\), la convergencia local suele ser lineal. Si \(|g'(\alpha)|\) no es menor que 1, esa condición suficiente deja de aplicarse; el método puede converger lentamente, divergir o necesitar otro análisis.
-- **Secante:** para raíces simples y condiciones apropiadas presenta orden superlineal aproximado \(p=(1+\sqrt{5})/2\approx1.618\). En la raíz doble de este laboratorio, su convergencia es lineal, no de orden 1.618.
-- **Newton-Raphson:** cerca de una raíz simple, con derivada no nula y condiciones regulares, presenta convergencia cuadrática (orden 2). Para la raíz doble \((x-2)^2\), el Newton ordinario pasa a ser lineal.
-- **Newton-Raphson mejorado:** la fórmula con primera y segunda derivada utilizada en el proyecto tiene convergencia cuadrática local bajo condiciones regulares, incluso para raíces múltiples de multiplicidad conocida implícitamente en la fórmula. En nuestro polinomio con raíz doble llega exactamente a \(x=2\) en un paso, un caso particular que no permite medir un orden experimental a partir de varias iteraciones.
+- **Punto fijo:** su comportamiento depende de la transformación $g(x)$. Cuando $0<|g'(\alpha)|<1$, la convergencia local suele ser lineal. Si $|g'(\alpha)|$ no es menor que 1, esa condición suficiente deja de aplicarse; el método puede converger lentamente, divergir o necesitar otro análisis.
+- **Secante:** para raíces simples y condiciones apropiadas presenta orden superlineal aproximado $p=(1+\sqrt{5})/2\approx1.618$. En la raíz doble de este laboratorio, su convergencia es lineal, no de orden 1.618.
+- **Newton-Raphson:** cerca de una raíz simple, con derivada no nula y condiciones regulares, presenta convergencia cuadrática (orden 2). Para la raíz doble $(x-2)^2$, el Newton ordinario pasa a ser lineal.
+- **Newton-Raphson mejorado:** la fórmula con primera y segunda derivada utilizada en el proyecto tiene convergencia cuadrática local bajo condiciones regulares, incluso para raíces múltiples, sin necesidad de conocer previamente su multiplicidad. En nuestro polinomio con raíz doble llega exactamente a $x=2$ en un paso, un caso particular que no permite medir un orden experimental a partir de varias iteraciones.
 
-Los gráficos del proyecto representan `log10(error)` frente a la iteración. **Ese error corresponde al valor registrado en el historial, generalmente al cambio absoluto entre dos aproximaciones**, y no necesariamente al error verdadero \(|x_n-\alpha|\). En las primeras iteraciones de bisección y falsa posición se utiliza una estimación asociada al intervalo inicial.
+Los gráficos del proyecto representan `log10(error)` frente a la iteración. **Ese error corresponde al valor registrado en el historial, generalmente al cambio absoluto entre dos aproximaciones**, y no necesariamente al error verdadero $|x_n-\alpha|$. En las primeras iteraciones de bisección y falsa posición se utiliza una estimación asociada al intervalo inicial.
 
 ![Convergencia de la función polinómica](src/assets/convergencia_polinomica.png)
 
@@ -137,7 +137,7 @@ En general, una caída más pronunciada de las curvas indica que el cambio entre
 
 ### 5.3. ¿Qué métodos necesitan un intervalo con cambio de signo y cuáles no?
 
-En las implementaciones utilizadas, los métodos que requieren un intervalo con cambio de signo son **bisección** y **falsa posición**. Para las raíces simples estudiadas verificamos que \(f(a)f(b)<0\).
+En las implementaciones utilizadas, los métodos que requieren un intervalo con cambio de signo son **bisección** y **falsa posición**. Para las raíces simples estudiadas verificamos que $f(a)f(b)<0$.
 
 Los métodos **punto fijo, secante, Newton-Raphson y Newton-Raphson mejorado** no requieren ese intervalo. En cambio, dependen de la transformación elegida, los valores iniciales y las propiedades de la función y sus derivadas.
 
@@ -145,49 +145,49 @@ Por esta razón, los métodos abiertos pueden ser rápidos, pero también pueden
 
 ### 5.4. ¿Qué ocurrió con la raíz doble? ¿Qué métodos fallaron y cuál funcionó mejor?
 
-La función considerada fue \(f(x)=(x-2)^2\), cuya raíz exacta es \(x=2\).
+La función considerada fue $f(x)=(x-2)^2$, cuya raíz exacta es $x=2$.
 
 Bisección y falsa posición no se pudieron aplicar con el intervalo `[1, 3]` porque sus extremos tienen el mismo signo. Punto fijo no alcanzó la tolerancia durante las 100 iteraciones disponibles.
 
 Los métodos restantes produjeron estos resultados:
 
-| Método | Iteraciones | Raíz obtenida | Error respecto de \(x=2\) |
+| Método | Iteraciones | Raíz obtenida | Error respecto de $x=2$ |
 |---|---:|---:|---:|
 | Secante | 15 | 2.000825423 | 0.000825423 |
 | Newton-Raphson | 10 | 1.999218750 | 0.000781250 |
 | Newton mejorado | 1 | 2.000000000 | 0.000000000 |
 
-**Newton-Raphson ordinario.** Si llamamos \(e_n=x_n-2\) al error respecto de la raíz, entonces \(f(x_n)=e_n^2\) y \(f'(x_n)=2e_n\). Para \(e_n\ne0\), la actualización de Newton da:
+**Newton-Raphson ordinario.** Si llamamos $e_n=x_n-2$ al error respecto de la raíz, entonces $f(x_n)=e_n^2$ y $f'(x_n)=2e_n$. Para $e_n\ne0$, la actualización de Newton da:
 
-\[
+$$
 x_{n+1}=x_n-\frac{e_n^2}{2e_n}=x_n-\frac{e_n}{2},
 \qquad e_{n+1}=\frac{e_n}{2}.
-\]
+$$
 
 Esto demuestra que, en esta raíz doble, **Newton ordinario converge linealmente**: el error verdadero se reduce a la mitad por iteración, en lugar de disminuir cuadráticamente como ocurre cerca de una raíz simple.
 
 **Secante.** También converge linealmente en este caso de raíz múltiple, aunque para raíces simples suele tener orden cercano a 1.618. En nuestros resultados necesitó 15 iteraciones para satisfacer el criterio de residuo.
 
-**Punto fijo.** La transformación utilizada fue \(g(x)=x+(x-2)^2\). Para la raíz \(\alpha=2\) se cumple \(g'(2)=1\), por lo que no se obtiene una contracción estricta en la raíz. Si escribimos \(e_n=x_n-2\), se tiene:
+**Punto fijo.** La transformación utilizada fue $g(x)=x+(x-2)^2$. Para la raíz $\alpha=2$ se cumple $g'(2)=1$, por lo que no se obtiene una contracción estricta en la raíz. Si escribimos $e_n=x_n-2$, se tiene:
 
-\[
+$$
 e_{n+1}=e_n+e_n^2=e_n(1+e_n).
-\]
+$$
 
-Como el valor inicial es `p0 = 1.2`, el error comienza siendo negativo. Las aproximaciones se acercan a 2 desde la izquierda, pero la razón \(|e_{n+1}|/|e_n|\) se acerca a 1. Se trata de una **convergencia sublineal muy lenta**. Por eso es más preciso decir que punto fijo *no alcanzó la tolerancia en 100 iteraciones*, y no que nunca podría converger.
+Como el valor inicial es `p0 = 1.2`, el error comienza siendo negativo. Las aproximaciones se acercan a 2 desde la izquierda, pero la razón $|e_{n+1}|/|e_n|$ se acerca a 1. Se trata de una **convergencia sublineal muy lenta**. Por eso es más preciso decir que punto fijo *no alcanzó la tolerancia en 100 iteraciones*, y no que nunca podría converger.
 
 **Newton-Raphson mejorado.** La fórmula implementada es:
 
-\[
+$$
 x_{n+1}=x_n-\frac{f(x_n)f'(x_n)}{[f'(x_n)]^2-f(x_n)f''(x_n)}.
-\]
+$$
 
-Para \(f(x)=e^2\), \(f'(x)=2e\) y \(f''(x)=2\), se obtiene, siempre que el punto inicial no sea ya la raíz:
+Para $f(x)=e^2$, $f'(x)=2e$ y $f''(x)=2$, se obtiene, siempre que el punto inicial no sea ya la raíz:
 
-\[
+$$
 x_{n+1}=x_n-\frac{e^2(2e)}{(2e)^2-e^2(2)}
 =x_n-e=2.
-\]
+$$
 
 Esto explica por qué el método mejorado encontró la raíz exacta en **una sola iteración** desde `p0 = 1.2`.
 
@@ -197,16 +197,16 @@ Esto explica por qué el método mejorado encontró la raíz exacta en **una sol
 
 Finalmente, es importante interpretar correctamente la tolerancia. Para esta función:
 
-\[
+$$
 |f(x)|=|x-2|^2<10^{-6}
 \quad\Longrightarrow\quad |x-2|<10^{-3}.
-\]
+$$
 
 Por eso secante y Newton ordinario fueron registrados como convergentes mediante el criterio de residuo, aunque sus errores verdaderos de raíz eran aproximadamente `0.0008`. El enunciado permite detener por residuo, de manera que esos registros son válidos según el criterio utilizado, pero **no deben describirse como aproximaciones con error verdadero menor que `1e-6`**.
 
 ### 5.5. ¿Cómo influyen el intervalo y los valores iniciales?
 
-Para analizar esta pregunta se realizaron **nueve pruebas adicionales** con la función polinómica \(f(x)=x^3-x-2\). Se mantuvieron la tolerancia `1e-6` y el máximo de 100 iteraciones. Solo cambiaron los intervalos o las aproximaciones iniciales.
+Para analizar esta pregunta se realizaron **nueve pruebas adicionales** con la función polinómica $f(x)=x^3-x-2$. Se mantuvieron la tolerancia `1e-6` y el máximo de 100 iteraciones. Solo cambiaron los intervalos o las aproximaciones iniciales.
 
 Los resultados se encuentran en `src/data/comparacion_condiciones.csv`:
 
@@ -242,7 +242,7 @@ Si no se desea calcular derivadas, **secante** es una opción útil. Para las ra
 
 Cuando se conoce un intervalo con cambio de signo y se busca un procedimiento sencillo y confiable, **bisección** es una buena elección, aunque normalmente requirió más iteraciones que Newton y secante. **Falsa posición** fue más rápida que bisección en nuestras cinco raíces simples; por ejemplo, en la función logarítmica necesitó 4 iteraciones frente a 19 de bisección.
 
-Para la función con raíz doble, **Newton-Raphson mejorado** obtuvo el mejor resultado al encontrar exactamente \(x=2\) en un paso. Este comportamiento es especialmente favorable en el ejemplo elegido, pero no implica que siempre termine en una iteración para cualquier función.
+Para la función con raíz doble, **Newton-Raphson mejorado** obtuvo el mejor resultado al encontrar exactamente $x=2$ en un paso. Este comportamiento es especialmente favorable en el ejemplo elegido, pero no implica que siempre termine en una iteración para cualquier función.
 
 **Punto fijo** puede ser eficaz si se escoge una transformación adecuada. En la función mixta convergió en 5 iteraciones, mientras que en la raíz doble, con la transformación utilizada, no alcanzó el criterio de parada en 100 iteraciones.
 
@@ -254,9 +254,9 @@ Los resultados del laboratorio muestran que **no existe un método que sea siemp
 
 En las cinco funciones con raíces simples, Newton-Raphson y Newton-Raphson mejorado estuvieron entre los métodos con menos iteraciones. Secante también tuvo buenos resultados y no necesita calcular derivadas. Bisección necesitó generalmente más iteraciones que estos métodos, pero mantuvo el intervalo con raíz cuando se cumplían sus condiciones de aplicación.
 
-La raíz doble permitió observar diferencias importantes. Como \(f(x)=(x-2)^2\) no cambia de signo alrededor de \(x=2\), bisección y falsa posición no fueron aplicables con el intervalo seleccionado. Punto fijo se acercó lentamente a la raíz, pero no cumplió la tolerancia en 100 iteraciones. Newton ordinario y secante convergieron más lentamente que en raíces simples, mientras que Newton mejorado encontró exactamente la raíz en un paso.
+La raíz doble permitió observar diferencias importantes. Como $f(x)=(x-2)^2$ no cambia de signo alrededor de $x=2$, bisección y falsa posición no fueron aplicables con el intervalo seleccionado. Punto fijo se acercó lentamente a la raíz, pero no cumplió la tolerancia en 100 iteraciones. Newton ordinario y secante convergieron más lentamente que en raíces simples, mientras que Newton mejorado encontró exactamente la raíz en un paso.
 
-Este caso también mostró por qué es necesario **distinguir entre residuo y error verdadero**: que \(|f(x)|<10^{-6}\) no garantiza por sí solo que una raíz doble esté aproximada con error menor que `1e-6`.
+Este caso también mostró por qué es necesario **distinguir entre residuo y error verdadero**: que $|f(x)|<10^{-6}$ no garantiza por sí solo que una raíz doble esté aproximada con error menor que `1e-6`.
 
 En las nueve pruebas adicionales se observó el efecto de las condiciones iniciales. Para la función polinómica, bisección pasó de 22 a 16 iteraciones al reducir el intervalo; Newton-Raphson utilizó entre 2 y 5; y secante, entre 3 y 6. Todas esas ejecuciones convergieron, de modo que los resultados muestran diferencias de rapidez sin demostrar que cualquier condición inicial conduzca al éxito.
 
